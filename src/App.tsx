@@ -1,9 +1,11 @@
-import {Text, View} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+
+import AppStack from './presentation/navigations/AppStack.tsx';
 
 export default function App() {
   return (
-    <View>
-      <Text>App</Text>
-    </View>
+    <NavigationContainer>
+      <AppStack />
+    </NavigationContainer>
   );
 }
