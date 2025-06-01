@@ -7,14 +7,19 @@ import HorizontalCarousel from '../../components/movies/HorizontalCarousel.tsx';
 
 export default function HomeScreen() {
   const {top} = useSafeAreaInsets();
-  const {nowPlaying, popular, topRated, upcoming} = useMovies();
+  const {nowPlaying, popular, topRated, upcoming, popularNextPage} =
+    useMovies();
 
   return (
     <ScrollView>
       <View style={{marginTop: top + 20, paddingBottom: 30}}>
         <PosterCarousel movies={nowPlaying} />
 
-        <HorizontalCarousel movies={popular} title={'Popular'} />
+        <HorizontalCarousel
+          movies={popular}
+          title={'Popular'}
+          loadNextPage={popularNextPage}
+        />
 
         <HorizontalCarousel movies={topRated} title={'Top rated'} />
 
