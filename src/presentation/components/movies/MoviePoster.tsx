@@ -24,9 +24,9 @@ export default function MoviePoster(props: Props) {
         width,
         height,
         opacity: pressed ? 0.9 : 1,
-        marginHorizontal: 10,
+        marginHorizontal: 5,
         paddingBottom: 20,
-        paddingHorizontal: 10,
+        paddingHorizontal: 7,
       })}>
       <View style={{...styles.imageContainer, width, height}}>
         <Image source={{uri: movie.poster}} style={styles.image} />
