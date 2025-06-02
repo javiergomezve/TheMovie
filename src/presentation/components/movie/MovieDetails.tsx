@@ -1,14 +1,17 @@
 import {Fragment} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {FlatList, StyleSheet, Text, View} from 'react-native';
 
 import {FullMovie} from '../../../core/entities/movie.entity.ts';
 import {Formatter} from '../../../config/helpers/formatter.ts';
+import {Cast} from '../../../core/entities/cast.entity.ts';
+import CastActor from '../cast/CastActor.tsx';
 
 interface Props {
   movie: FullMovie;
+  cast: Cast[];
 }
 
-export default function MovieDetails({movie}: Props) {
+export default function MovieDetails({movie, cast}: Props) {
   return (
     <Fragment>
       <View style={styles.container}>
@@ -28,7 +31,15 @@ export default function MovieDetails({movie}: Props) {
       </View>
 
       <View style={styles.actorsContainer}>
-        <Text style={styles.actorsTitle}>Actors</Text>
+        <Text style={styles.actorsTitle}>Cast</Text>
+
+        <FlatList
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          data={cast}
+          keyExtractor={item => item.id.toString()}
+          renderItem={({item}) => <CastActor actor={item} />}
+        />
       </View>
     </Fragment>
   );
@@ -57,7 +68,7 @@ const styles = StyleSheet.create({
   },
   actorsContainer: {
     marginHorizontal: 10,
-    marginBottom: 100,
+    marginBottom: 50,
   },
   actorsTitle: {
     fontSize: 23,

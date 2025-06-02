@@ -1,4 +1,4 @@
-import {Text, View} from 'react-native';
+import {ScrollView, Text, View} from 'react-native';
 import {StackScreenProps} from '@react-navigation/stack';
 
 import {AppStackParams} from '../../navigations/AppStack.tsx';
@@ -10,7 +10,7 @@ interface Props extends StackScreenProps<AppStackParams, 'Details'> {}
 
 export default function DetailsScreen({route}: Props) {
   const {movieId} = route.params;
-  const {isLoading, fullMovie} = useMovie(movieId);
+  const {isLoading, fullMovie, cast} = useMovie(movieId);
 
   if (isLoading) {
     return <Text>Loading...</Text>;
@@ -25,10 +25,10 @@ export default function DetailsScreen({route}: Props) {
   }
 
   return (
-    <View>
+    <ScrollView>
       <MovieHeader {...fullMovie} />
 
-      <MovieDetails movie={fullMovie} />
-    </View>
+      <MovieDetails movie={fullMovie} cast={cast} />
+    </ScrollView>
   );
 }
