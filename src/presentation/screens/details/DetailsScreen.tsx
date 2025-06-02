@@ -5,6 +5,7 @@ import {AppStackParams} from '../../navigations/AppStack.tsx';
 import {useMovie} from '../../hooks/useMovie.ts';
 import MovieHeader from '../../components/movie/MovieHeader.tsx';
 import MovieDetails from '../../components/movie/MovieDetails.tsx';
+import FullScreenLoader from '../../components/loaders/FullScreenLoader.tsx';
 
 interface Props extends StackScreenProps<AppStackParams, 'Details'> {}
 
@@ -13,7 +14,7 @@ export default function DetailsScreen({route}: Props) {
   const {isLoading, fullMovie, cast} = useMovie(movieId);
 
   if (isLoading) {
-    return <Text>Loading...</Text>;
+    return <FullScreenLoader/>;
   }
 
   if (!fullMovie) {
